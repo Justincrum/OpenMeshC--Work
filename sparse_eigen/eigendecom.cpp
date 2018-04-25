@@ -103,10 +103,10 @@ void Laplace_Matrix(Eigen::MatrixXd & matrix, MyMesh & mesh){
         MyMesh::VertexHandle from_vertex = mesh.from_vertex_handle(*h_it);
         int i = to_vertex.idx();
         int j = from_vertex.idx();
-        matrix(i,j) -= 0.5;// * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
-        matrix(j,i) -= 0.5;// * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
-        matrix(i,i) += 0.5;// * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
-        matrix(j,j) += 0.5;// * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
+        matrix(i,j) -= 0.5 * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
+        matrix(j,i) -= 0.5 * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
+        matrix(i,i) += 0.5 * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
+        matrix(j,j) += 0.5 * mesh.property(Angle,mesh.next_halfedge_handle(*h_it));
     }
 }
 
